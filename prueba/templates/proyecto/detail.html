@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% load static %} {% block title %} Agregar Registro
+{% endblock title %} {% block content %} {% include "includes/header.html" %}
+
+<div class="container">
+  <div class="row py-2">
+    <div class="col-12 text-center">
+      <a class="btn btn-dark" href="{% url 'portafolio_app:listar_proyecto' %}"
+        >Volver Atras
+      </a>
+    </div>
+
+    <div class="col-12 mt-3 mb-3">
+      <div class="col-12 row justify-content-center">
+        <h5 class="col-4 text-center fs-3 bg-primary-subtle">
+          {{project.title}}
+        </h5>
+      </div>
+    </div>
+
+    <div class="col-12 row justify-content-center">
+      <div class="col-9 text-center">
+        <img src="{{project.image.url}}" class="img-fluid border" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 justify-content-center">
+    <div class="col-12 text-center my-2">
+      <span class="col-4 fs-5 badge text-bg-success">{{project.category}}</span>
+    </div>
+    <div class="col-12 text-center py-2">
+      {% for item in project.tags.all %}
+      <span class="fs-6 badge text-bg-primary">{{item.name}}</span>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row py-2 justify-content-center">
+    <div class="col-md-10 bg-primary bg-opacity-75 text-light rounded mb-3">
+      <p class="col-12">{{project.description}}</p>
+    </div>
+  </div>
+</div>
+
+{% include "includes/footer.html" %} {% endblock content %}

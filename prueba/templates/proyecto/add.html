@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load  static %}
+
+{% block title %} Agregar Registro {% endblock title %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="row ventana justify-content-center">
+    <div class="col-lg-5 col-sm-10 col-md-8 py-2">
+    <!-- <form action="" method="post" enctype="multipart/form-data">{% csrf_token %} -->
+        <form action="" method="post" class="form-group form-control-lg bg-primary  py-4 px-4 border text-light" enctype="multipart/form-data">{% csrf_token %}
+            <div class=" fs-2 ">
+  <p class="form-group text-center py-3 border border-2 border-start-0 border-end-0  bg-opacity-10 border border-info  ">Agregar Nuevo Registro</p>
+        </div>
+            <div class="form-group mb-2">
+                <label for="">Titulo:</label>
+                {{form.title}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Descripcion:</label>
+                {{form.description}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Categoria:</label>
+                {{form.category}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Etiquetas:</label>
+                {{form.tags}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Imagen:</label>
+                {{form.image}}
+            </div>
+            <div class=" py-3 text-center text-light">
+                <button type="submit" class="col-8 btn btn-success btn-lg">Agregar Nuevo Registro</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+            <!-- forma normal -->
+            <!-- <hr>
+            <div class="form-group mb-2">
+                <label for="">Categoria:</label>
+                {{form.category}}
+            </div>
+
+
+            <div class="form-group mb-2">
+                <label for="">Etiquetas:</label>
+                {{form.tags}}
+            </div> -->
+            <!-- forma normal -->
+
+        <!-- estructura completa -->
+            <!-- <div class="form-group mb-2" >
+                <label for="" class="">Nombres:</label>
+                <input type="text" class="form-control form-control-sm">
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="" class="">contraseña:</label>
+                <input type="password" class="form-control form-control-sm">
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6 col-md-6 mb-2">
+                    <label for="" class="">Direccion:</label>
+                    <input type="text" class="form-control form-control-sm">
+                </div>
+                <div class="form-group col-sm-6 col-md-6 mb-2">
+                    <label for="" class="">Telefono:</label>
+                    <input type="text" class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="txtComment" class="">Comentarios:</label>
+                <textarea class="form-control" id="txtComment" rows="4"></textarea>
+                            <div class=" py-3 text-center text-light">
+                <button type="submit" class="col-8 btn btn-success">Agregar Nuevo Registro</button>
+            </div> -->
+        <!-- estructura completa -->
+
+
+               <!-- <div class="d-grid gap-2 py-3 text-center"> en bloque completo-->
+
+<!-- jala todo -->
+<!-- <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Agregar</button>
+</form> -->
+<!-- jala todo -->
+
+
+{% include "includes/footer.html" %}
+{% endblock content %}

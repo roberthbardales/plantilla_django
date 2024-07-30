@@ -1,0 +1,71 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="light">
+  <div class="container-fluid mx-5">
+    <img
+      class="rounded-5 ms-5"
+      width=""
+      height="50"
+      src="{% static 'img/python.png' %}"
+      alt=""
+    />
+    <!-- <img class="rounded-5" width="" height="50" src="static/img/python.png" alt=""> -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse me-5" id="navbarColor01">
+      <ul class="navbar-nav me-auto ms-2">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'portafolio_app:home' %}"
+            >Inicio
+          </a>
+        </li>
+        <li class="nav-item mx-1">
+          <a
+            class="nav-link text-light"
+            href="{% url 'portafolio_app:listar_proyecto' %}"
+            >Listar</a
+          >
+        </li>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-light" href="{% url 'portafolio_app:home' %}"
+            >Opcion1</a
+          >
+        </li>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-light" href="{% url 'portafolio_app:home' %}"
+            >Editar</a
+          >
+        </li>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-light" href="{% url 'portafolio_app:home' %}"
+            >Eliminar</a
+          >
+        </li>
+      </ul>
+      <form
+        class="d-flex"
+        method="GET"
+        action="{% url 'portafolio_app:listar_proyecto' %}"
+      >
+        {% csrf_token %}
+        <input
+          id="kword_buscar"
+          name="kword_general"
+          class="form-control me-sm-2"
+          type="search"
+          placeholder="Buscar..."
+        />
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>

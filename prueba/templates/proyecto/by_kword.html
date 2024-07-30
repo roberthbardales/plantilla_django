@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load  static %}
+
+{% block title %} Plantilla {% endblock title %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="row">
+    <div class="col">
+        {% for item in contexto_by_kword  %}
+        <li>el resultado es :{{item.title}}</li>
+        <li>el resultado es :{{item.description}}</li>
+    {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+{% include "includes/footer.html" %}
+{% endblock content %}

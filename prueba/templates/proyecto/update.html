@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load  static %}
+
+{% block title %} Agregar Registro {% endblock title %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="row ventana justify-content-center">
+    <div class="col-lg-5 col-sm-10 col-md-8 py-2">
+    <!-- <form action="" method="post" enctype="multipart/form-data">{% csrf_token %} -->
+        <form action="" method="post" class="form-group form-control-lg bg-primary  py-4 px-4 border text-light" enctype="multipart/form-data">{% csrf_token %}
+            <div class=" fs-2 ">
+                <p class="form-group text-center py-3 border border-2 border-start-0 border-end-0   bg-opacity-10 border border-warning ">Modificar Registro</p>
+        </div>
+            <div class="form-group mb-2">
+                <label for="">Titulo:</label>
+                {{form.title}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Descripcion:</label>
+                {{form.description}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Categoria:</label>
+                {{form.category}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Etiquetas:</label>
+                {{form.tags}}
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Imagen:</label>
+                {{form.image}}
+            </div>
+            <div class=" py-3 text-center text-light">
+                <button type="submit" class="col-8 btn btn-warning btn-lg">Modificar Registro</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+
+{% include "includes/footer.html" %}
+{% endblock content %}

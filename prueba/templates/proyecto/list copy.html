@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load  static %}
+
+{% block title %} Agregar Registro {% endblock title %}
+
+{% block content %}
+
+<!-- {% include "includes/header.html" %} -->
+
+<div class="container  py-4">
+    <div class="row border bg-dark bg-primary-subtle py-2 rounded "  >
+        <div class="col-md-8 fs-2 text-center">Lista de Proyectos</div>
+        <div class="col-md-4 mt-1 text-center">
+                <form action="" method="get">{% csrf_token %}
+                <a class="col-12 col-lg-6 btn btn-primary" href="{% url 'portafolio_app:agregar_proyecto' %}">Agregar</a>
+            </form>
+        </div>
+    </div>
+    <form action="" method="GET">{% csrf_token %}
+        <div class="row py-4">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <label for="" class="form-label">ID:</label>
+                <input type="text"id="kword_id" name="kword_id" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-2 ">
+                <label for="" class="form-label">Titulo:</label>
+                <input type="text" id="kword_titulo" name="kword_titulo" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-2 ">
+                <label for="" class="form-label">Categoria:</label>
+                <input type="text" id="kword_categoria" name="kword_categoria" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-2 mt-4 ">
+            <!-- <button type="submit" class="col-12 col-lg-6 btn btn-primary">Buscar</button> -->
+            <input type="submit" class="btn btn-success" type="button" value="Buscar">
+            </div>
+            <div class="col-md-2 "></div>
+        </div>
+    </form>
+
+    <div class="row justify-content-center">
+        <div class="col-12 table-responsive text-center ">
+            <table class="table  table-responsive table-sm table-hover table-striped table-bordered px-2">
+            <!-- <table class="table table-hover table-bordered table-sm w-75 mx-auto text-center"> -->
+              <caption>lista de Registros</caption>
+              <thead class="table-primary text-white">
+                <tr >
+                <th class="col-1">ID</th>
+                <th class="col-1">Titulo</th>
+                <th class="col-5">Descripcion</th>
+                <th class="col-1">Categoria</th>
+                <th class="col-1">Etiqueta</th>
+                <th class="col-1">Imagen</th>
+                <th class="col-3" colspan="3">Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for item in contexto_proyectos %}
+                  <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.category}}</td>
+                    <td>
+                    {% for tag in item.tags.all %}
+                    <p>
+                        {{tag.name}}
+                    </p>
+                    {% endfor %}
+                    <td>
+                        <img src="{{item.image.url}}" height="100" width="200"></i>
+                    </td>
+                </td>
+                <td class="col-1">
+                    <a class="btn btn-success col-12" href="{% url 'portafolio_app:detalle_proyecto' item.id %}">Ver</a>
+                </td>
+                <td class="col-1">
+                    <a class="btn btn-warning col-12" href="{% url 'portafolio_app:modificar_proyecto' item.id %}">Modificar</a>
+                </td>
+                <td class="col-1">
+                    <a class="btn btn-danger col-12" href="{% url 'portafolio_app:eliminar_proyecto' item.id %}">Eliminar</a>
+                </td>
+                  </tr>
+                  {% endfor %}
+
+              </tbody>
+            </table>
+        </div>
+    </div>
+<!-- inicio paginacion -->
+<div class="row ">
+    <div class="col-12">
+        {% if is_paginated %}
+        <nav aria-label="..." >
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <!-- <a href="?page={{page_obj.previous_page_number}}">Atras</a> -->
+                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{page_obj.previous_page_number}}" tabindex="-1">Atras</a>
+                </li>
+                {% endif %}
+                {% for pagina in paginator.page_range %}
+                {% ifequal pagina page_obj.number %}
+                <!-- <li class="current"><span class="show-for-sr">You're on page</span> {{ pagina }}</li> -->
+                <li class="page-item active">
+                    <a class="page-link" href="#!"> {{ pagina }}</a>
+                </li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{pagina}}">{{ pagina }}</a></li>
+                {% endifequal %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <!-- <a href="?page={{page_obj.next_page_number}}">Siguiente</a> -->
+                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+<!-- final paginacion -->
+
+
+
+</div>
+
+{% include "includes/footer.html" %}
+{% endblock content %}

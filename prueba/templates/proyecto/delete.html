@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load  static %}
+
+{% block title %} Eliminar Registro {% endblock title %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+    <div class="row ventana text-center py-3">
+        <form action="" method="POST" class="">{% csrf_token %}
+            <h1 class="display-6">¿Desea eliminar el siguiente registro?</h1>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-danger">Confirmar</button>
+            </div>
+        </form>
+    </div>
+
+{% include "includes/footer.html" %}
+{% endblock content %}
